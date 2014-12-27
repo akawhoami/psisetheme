@@ -11,4 +11,6 @@ Convert theme from XML theme file
 Convert theme from theme URL  
 **.\Convert-EctToISE -ThemeUrl http://eclipsecolorthemes.org/?view=empty&action=download&theme=21&type=xml**
 
+Enjoy!
+
 
