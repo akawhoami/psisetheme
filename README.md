@@ -11,6 +11,7 @@ Convert theme from EclipseColorThemes.org URL
 
 <<<<<<< HEAD
 Convert theme from xml theme file
+
 .\Convert-EctToISE -ThemeFile c:\ObsidianTheme.xml 
 
 Convert theme from EclipseColorThemes.org URL
