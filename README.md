@@ -1,4 +1,4 @@
-Ect to PowerShell ISE theme converter
+Eclipse to PowerShell ISE theme converter
 ==========
 EclipseColorThemes.org contains many pretty good themes. This powershell script convert themes from EclipseColorThemes.org to PowerShell ISE editor theme.
 
