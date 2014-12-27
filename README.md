@@ -1,10 +1,9 @@
 psisetheme
 ==========
 Site EclipseColorThemes.org contains many pretty good themes.  
-This powershell script convert themes from EclipseColorThemes.org to PowerShell ISE editor
+This powershell script convert themes from EclipseColorThemes.org to PowerShell ISE editor.
 
-Examples
-
+Examples  
 Convert theme from xml theme file  
 **.\Convert-EctToISE -ThemeFile c:\ObsidianTheme.xml**  
 
