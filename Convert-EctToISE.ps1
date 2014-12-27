@@ -100,7 +100,8 @@ $colorTable = @{"ErrorForegroundColor"           = "#FF0000";
                 "XmlTokenColors\10"               = "#000000";
                 "XmlTokenColors\Tag"              = "#00008B";
                 "XmlTokenColors\Text"             = "#000000"
-                }            
+                }
+                
 $replaceTable = @{"ScriptPaneBackgroundColor"      = "background";
                   "ScriptPaneForegroundColor"      = "foreground";
                   "TokenColors\Attribute"          = "keyword";
