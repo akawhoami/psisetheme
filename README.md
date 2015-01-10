@@ -9,7 +9,7 @@ Convert theme from XML theme file
 **.\Convert-EctToISE -ThemeFile .\theme-21.xml**  
 
 Convert theme from theme URL  
-**.\Convert-EctToISE -ThemeUrl http://eclipsecolorthemes.org/?view=empty&action=download&theme=21&type=xml**
+**.\Convert-EctToISE -ThemeUrl "http://eclipsecolorthemes.org/?view=empty&action=download&theme=21&type=xml**"
 
 Enjoy!
 
