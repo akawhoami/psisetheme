@@ -28,13 +28,13 @@ Param(
 )  
 
 $colorTable = @{"ErrorForegroundColor"           = "#FF0000";
-                "ErrorBackgroundColor"           = "#FFFFFF";
-                "WarningForegroundColor"         = "#FF8CFF";
-                "WarningBackgroundColor"         = "#FFFFFF";
+                "ErrorBackgroundColor"           = "#012456";
+                "WarningForegroundColor"         = "#FF8C00";
+                "WarningBackgroundColor"         = "#012456";
                 "VerboseForegroundColor"         = "#00FFFF";
-                "VerboseBackgroundColor"         = "#FFFFFF";
+                "VerboseBackgroundColor"         = "#012456";
                 "DebugForegroundColor"           = "#00FFFF";
-                "DebugBackgroundColor"           = "#FFFFFF";
+                "DebugBackgroundColor"           = "#012456";
                 "ConsolePaneBackgroundColor"     = "#012456";
                 "ConsolePaneTextBackgroundColor" = "#012456";
                 "ConsolePaneForegroundColor"     = "#F5F5F5";
@@ -188,7 +188,7 @@ $xmlFontFamily.InnerText = "Lucida Console"
 
 #FontSize node
 $xmlFontSize = $xmlRoot.AppendChild($psThemeXml.CreateElement("FontSize"))
-$xmlFontSize.InnerText = 12
+$xmlFontSize.InnerText = 10
 $psThemeXml.AppendChild($xmlRoot);
 
 #Save theme to file
