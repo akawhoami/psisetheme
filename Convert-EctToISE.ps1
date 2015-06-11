@@ -6,29 +6,34 @@
     EclipseColorThemes.org to PowerShell ISE theme converter.
 
 .DESCRIPTION  
-    This script convert themes from EclipseColorThemes.org to PowerShell ISE editor themes.
+    This script converts themes from EclipseColorThemes.org to PowerShell ISE editor themes.
 
 .PARAMETER ThemeFile
-    Path to Xml theme file from EclipseColorThemes.org
+    Path to XML theme file from EclipseColorThemes.org.
 
-.PARAMETER ThemeUrl
-    Specifies url to theme from EclipseColorThemes.org
-
-.EXAMPLE
-    Convert-EctToISE -ThemeFile c:\ObsidianTheme.xml
+.PARAMETER ThemeURL
+    Specifies URL of a theme on EclipseColorThemes.org.
 
 .EXAMPLE
-    Convert-EctToISE -ThemeUrl http://eclipsecolorthemes.org/?view=empty&action=download&theme=21&type=xml 
+    Convert-EctToISE -ThemeFile C:\ObsidianTheme.xml, C:\Solarized.xml, .\ZenBurn.xml
+
+.EXAMPLE
+    Convert-EctToISE -ThemeURL "http://eclipsecolorthemes.org/?view=empty&action=download&theme=21&type=xml", "http://eclipsecolorthemes.org/?view=empty&action=download&theme=52&type=xml"
 
 .NOTES
     Name: Convert-EctToISE.ps1
     Requires: PowerShell v3
 
     VERSION HISTORY:
-    1.0 (27-Dec-2014): Initial Version.
-    1.1 (05-Jun-2015): Changed several Console pane colors so they're all the default ISE ones.
-    1.2 (11-Jun-2015): Turned script into an advanced function.
-                        Set parameters to an array, and allowed them to be accepted from the pipeline.
+    1.0     27-Dec-2014 (akawhoami)            
+            Initial Version.
+
+    1.1     05-Jun-2015 (marzme)
+            Changed several Console pane colors so they're all the default ISE ones.
+
+    1.2     11-Jun-2015 (marzme)
+            Turned script into an advanced function.
+            Changed parameters to be arrays, and allowed them to be accepted from the pipeline.
 
 
 .LINK
@@ -42,11 +47,11 @@
 
         [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
         [string[]]
-        $ThemeFiles,
+        $ThemeFile,
 
         [Parameter(Mandatory = $false, ValueFromPipeline=$true)]
         [string[]]
-        $ThemeURLs
+        $ThemeURL
 
     )
         
@@ -178,10 +183,10 @@
         
                             
                 ForEach ($elem in $replaceTable.Keys)
-                {
+                {                    
                     $color = $eclipseThemeXml.colorTheme.$($replaceTable[$elem]) 
                     $colorTable[$elem] = $color.color
-                }#FOREACH $elem in $replaceTable
+                }#FOREACH $elem in $replaceTable                
 
                 $psThemeXml = New-Object xml
                 $xmlDcl = $psThemeXml.CreateXmlDeclaration("1.0", "utf-16", $null)
@@ -195,7 +200,7 @@
     
 
                 ForEach ($elem in $colorTable.Keys)
-                {
+                {   
                     $xmlString = $xmlKeys.AppendChild($psThemeXml.CreateElement("string"))
                     $xmlString.InnerText = $elem 
                     $xmlColor = $xmlValues.AppendChild($psThemeXml.CreateElement("Color"))
@@ -208,6 +213,7 @@
                     $xmlColorB = $xmlColor.AppendChild($psThemeXml.CreateElement("B"))
                     $xmlColorB.InnerText = [Convert]::ToInt32(($colorTable[$elem]).substring(5, 2), 16)
                 }#FOREACH $elem in $colorTable
+                
 
                 #Name node
                 $xmlName = $xmlRoot.AppendChild($psThemeXml.CreateElement("Name"))
@@ -229,25 +235,25 @@
 
 
 
-            if ($ThemeFiles)
+            if ($ThemeFile)
             {
                 # The process block can be executed multiple times as objects are passed through the pipeline into it.
-                ForEach($ThemeFile In $ThemeFiles)
+                ForEach($File In $ThemeFile)
                 {
-                     $eclipseThemeXml = [xml](Get-Content $ThemeFile)
+                     $eclipseThemeXml = [xml](Get-Content $File)
                      Invoke-Expression New-IseThemeXMLFile               
                 }#FOREACH $ThemeFile
-            }#IF $ThemeFiles
+            }#IF $ThemeFile
 
-            elseif ($ThemeURLs)
+            elseif ($ThemeURL)
             {
-                ForEach($ThemeURL In $ThemeURLs)
+                ForEach($URL In $ThemeURL)
                 {
-                     $eclipseThemeXml = [xml](Invoke-WebRequest -Uri $ThemeURL).Content
+                     $eclipseThemeXml = [xml](Invoke-WebRequest -Uri $URL).Content
                      Invoke-Expression New-IseThemeXMLFile             
                 }#FOREACH $ThemeURL
                  
-            }#ELSEIF $ThemeURLs
+            }#ELSEIF $ThemeURL
 
             else
             {
